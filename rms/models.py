@@ -25,7 +25,7 @@ class md(models.Model):
 	"""docstring for ClassName"""
 	Project = models.CharField(max_length=50,null=True,blank=True)
 	System_RID_No = models.CharField(max_length=30,null=True,blank=True)
-	Date = models.DateTimeField(null=True,blank=True)
+	Date = models.DateField(null=True,blank=True)
 	RunTime_Hrs = models.FloatField(null=True,blank=True)
 	Water_Discharge_Lts = models.FloatField(null=True,blank=True)
 	Pump_Consumption_KWH = models.FloatField(null=True,blank=True)

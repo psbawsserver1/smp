@@ -19,11 +19,11 @@ def home(request):
 
 	xaxis=[]
 	yaxis=[]
-	data = dd.objects.filter(System_RID_No='1001')[:4]
-	t_GPower = md.objects.filter(System_RID_No='1001').aggregate(Sum('Gross_KWH')).get('Gross_KWH__sum')
-	t_InvPower = md.objects.filter(System_RID_No='1001').aggregate(Sum('Inverter_Output_KWH')).get('Inverter_Output_KWH__sum')
-	t_PumpPower = md.objects.filter(System_RID_No='1001').aggregate(Sum('Pump_Consumption_KWH')).get('Pump_Consumption_KWH__sum')
-	t_PumpLtrs = md.objects.filter(System_RID_No='1001').aggregate(Sum('Water_Discharge_Lts')).get('Water_Discharge_Lts__sum')
+	data = dd.objects.filter(System_RID_No='1001')[:10]
+	t_GPower = dd.objects.filter(System_RID_No='1001').aggregate(Sum('Gross_KWH')).get('Gross_KWH__sum')
+	t_InvPower = dd.objects.filter(System_RID_No='1001').aggregate(Sum('Inverter_Output_KWH')).get('Inverter_Output_KWH__sum')
+	t_PumpPower = dd.objects.filter(System_RID_No='1001').aggregate(Sum('Pump_Consumption_KWH')).get('Pump_Consumption_KWH__sum')
+	t_PumpLtrs = dd.objects.filter(System_RID_No='1001').aggregate(Sum('Water_Discharge_Lts')).get('Water_Discharge_Lts__sum')
 
 	for x in data:
 		xaxis.append(str(x.Date))
@@ -46,16 +46,16 @@ def search(request):
 
 		xaxis=[]
 		yaxis=[]
-		chart_data = dd.objects.filter(System_RID_No=id_no)[:4]
+		chart_data = dd.objects.filter(System_RID_No=id_no).order_by('Date')[:10]
 
 		for x in chart_data:
 			xaxis.append(str(x.Date))
 			yaxis.append(x.Inverter_Output_KWH)
 
-		t_GPower = md.objects.filter(System_RID_No=id_no).aggregate(Sum('Gross_KWH')).get('Gross_KWH__sum')
-		t_InvPower = md.objects.filter(System_RID_No=id_no).aggregate(Sum('Inverter_Output_KWH')).get('Inverter_Output_KWH__sum')
-		t_PumpPower = md.objects.filter(System_RID_No=id_no).aggregate(Sum('Pump_Consumption_KWH')).get('Pump_Consumption_KWH__sum')
-		t_PumpLtrs = md.objects.filter(System_RID_No=id_no).aggregate(Sum('Water_Discharge_Lts')).get('Water_Discharge_Lts__sum')
+		t_GPower = dd.objects.filter(System_RID_No=id_no).aggregate(Sum('Gross_KWH')).get('Gross_KWH__sum')
+		t_InvPower = dd.objects.filter(System_RID_No=id_no).aggregate(Sum('Inverter_Output_KWH')).get('Inverter_Output_KWH__sum')
+		t_PumpPower = dd.objects.filter(System_RID_No=id_no).aggregate(Sum('Pump_Consumption_KWH')).get('Pump_Consumption_KWH__sum')
+		t_PumpLtrs = dd.objects.filter(System_RID_No=id_no).aggregate(Sum('Water_Discharge_Lts')).get('Water_Discharge_Lts__sum')
 		return render(request, 'index.html', {'xaxis': xaxis, 'yaxis': yaxis, 'id_no':id_no, 't_GPower': t_GPower, 't_InvPower': t_InvPower, 't_PumpPower': t_PumpPower, 't_PumpLtrs': t_PumpLtrs})
 	else:
 		return render(request, 'index.html')
@@ -76,7 +76,7 @@ def monthR(request):
 def openId(request, System_RID_No):
 	xaxis=[]
 	yaxis=[]
-	chart_data = dd.objects.filter(System_RID_No=System_RID_No)[:4]
+	chart_data = dd.objects.filter(System_RID_No=System_RID_No).order_by('Date')[:10]
 
 	for x in chart_data:
 		xaxis.append(str(x.Date))
@@ -84,10 +84,10 @@ def openId(request, System_RID_No):
 
 	id_no = System_RID_No
 
-	t_GPower = md.objects.filter(System_RID_No=System_RID_No).aggregate(Sum('Gross_KWH')).get('Gross_KWH__sum')
-	t_InvPower = md.objects.filter(System_RID_No=System_RID_No).aggregate(Sum('Inverter_Output_KWH')).get('Inverter_Output_KWH__sum')
-	t_PumpPower = md.objects.filter(System_RID_No=System_RID_No).aggregate(Sum('Pump_Consumption_KWH')).get('Pump_Consumption_KWH__sum')
-	t_PumpLtrs = md.objects.filter(System_RID_No=System_RID_No).aggregate(Sum('Water_Discharge_Lts')).get('Water_Discharge_Lts__sum')
+	t_GPower = dd.objects.filter(System_RID_No=System_RID_No).aggregate(Sum('Gross_KWH')).get('Gross_KWH__sum')
+	t_InvPower = dd.objects.filter(System_RID_No=System_RID_No).aggregate(Sum('Inverter_Output_KWH')).get('Inverter_Output_KWH__sum')
+	t_PumpPower = dd.objects.filter(System_RID_No=System_RID_No).aggregate(Sum('Pump_Consumption_KWH')).get('Pump_Consumption_KWH__sum')
+	t_PumpLtrs = dd.objects.filter(System_RID_No=System_RID_No).aggregate(Sum('Water_Discharge_Lts')).get('Water_Discharge_Lts__sum')
 	return render(request, 'index.html', {'xaxis': xaxis, 'yaxis': yaxis, 'id_no':id_no, 't_GPower': t_GPower, 't_InvPower': t_InvPower, 't_PumpPower': t_PumpPower, 't_PumpLtrs': t_PumpLtrs})
 
 @csrf_exempt

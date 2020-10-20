@@ -253,7 +253,7 @@
                   </div>
                   <div class="font-weight-bold">
                     <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Vignesh from Access</div>
+                    <div class="small text-gray-500">Ravichandran from Suguna</div>
                   </div>
                 </a>
                 
@@ -301,7 +301,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard-({% if id_no %}{{ id_no }} {% else %} 1001 {% endif %})</h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard-({% if id_no %}{{ id_no }} {% else %} 9001 {% endif %})</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
@@ -315,7 +315,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pump Power Consumption</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ t_PumpPower }} Kwh</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ t_PumpPower|floatformat:'2' }} Kwh</div>
                     </div>
                     <div class="col-auto">
                       
@@ -332,7 +332,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Flow</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ t_PumpLtrs }} Ltrs</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ t_PumpLtrs|floatformat:'1' }} Ltrs</div>
                     </div>
                     <div class="col-auto">
                       
@@ -351,7 +351,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Inverter Power Consumption</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ t_InvPower }} Kwh</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ t_InvPower|floatformat:'2' }} Kwh</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -375,7 +375,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Gross Power</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ t_GPower }} Kwh</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ t_GPower|floatformat:'2' }} Kwh</div>
                     </div>
                     <div class="col-auto">
                       
@@ -395,7 +395,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Gross Power(Kwh) Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Inverter Gross Power(Kwh) Overview</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -589,8 +589,8 @@ var myBarChart = new Chart(ctx, {
       }],
       yAxes: [{
         ticks: {
-          maxTicksLimit: 5,
-          padding: 10,
+          maxTicksLimit: 3,
+          padding: 1,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
             return  number_format(value);

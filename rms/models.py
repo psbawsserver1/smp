@@ -18,7 +18,7 @@ class dd(models.Model):
 
 
 	def __str__(self):   
-		return self.System_RID_No+  str(self.Date)
+		return self.System_RID_No+'-'+str(self.Date)
 
 
 class md(models.Model):
@@ -36,22 +36,22 @@ class md(models.Model):
 
 
 	def __str__(self):   
-		return self.System_RID_No+  str(self.Date)
+		return self.System_RID_No+'-'+str(self.Date)
 
 class siteDtls(models.Model):
 	"""docstring for ClassName"""
 	Sid = models.CharField(max_length=30,null=True,blank=True)
-	ConNum = models.IntegerField(null=True,blank=True)
+	ConNum = models.CharField(max_length=30,null=True,blank=True)
 	ConName = models.CharField(max_length=30,null=True,blank=True)
 	ConMob = models.IntegerField( null=True,blank=True)
-	LocName = models.CharField(max_length=30,null=True,blank=True)
-	PumpDtls = models.CharField(max_length=30,null=True,blank=True)
-	InvDtls = models.CharField(max_length=30,null=True,blank=True)
+	LocName = models.CharField(max_length=50,null=True,blank=True)
+	PumpDtls = models.CharField(max_length=100,null=True,blank=True)
+	InvDtls = models.CharField(max_length=100,null=True,blank=True)
 	
 
 
 	def __str__(self):   
-		return self.Sid+  str(self.ConName)
+		return self.Sid+'-'+str(self.ConName)
 
 
 

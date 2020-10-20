@@ -43,7 +43,7 @@ class siteDtls(models.Model):
 	Sid = models.CharField(max_length=30,null=True,blank=True)
 	ConNum = models.IntegerField(null=True,blank=True)
 	ConName = models.CharField(max_length=30,null=True,blank=True)
-	ConMob = models.IntegerField(max_length=10, null=True,blank=True)
+	ConMob = models.IntegerField( null=True,blank=True)
 	LocName = models.CharField(max_length=30,null=True,blank=True)
 	PumpDtls = models.CharField(max_length=30,null=True,blank=True)
 	InvDtls = models.CharField(max_length=30,null=True,blank=True)
